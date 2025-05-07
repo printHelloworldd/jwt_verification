@@ -10,5 +10,8 @@ RUN dart pub get
 # Копируем остальной код
 COPY . .
 
-# Указываем точку входа
-CMD ["dart", "bin/jwt_verification.dart"]
+# Собираем
+RUN dart compile exe bin/jwt_verification.dart -o bin/server
+
+# Запускаем сервер
+CMD ["./bin/server"]
