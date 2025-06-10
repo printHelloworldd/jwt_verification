@@ -1,16 +1,29 @@
+/*
+This file is part of jwt_verification,
+an open-source application for secure communication.
+
+For license and copyright information please see:
+https://github.com/printHelloworldd/jwt_verification/blob/main/LEGAL.md
+*/
+
 import 'dart:convert';
 
-import 'package:shelf/shelf.dart';
+import 'package:dotenv/dotenv.dart';
 import 'package:http/http.dart' as http;
+import 'package:shelf/shelf.dart';
 
 Future<Response> verify(Request request) async {
+  final DotEnv env = DotEnv(includePlatformEnvironment: true)..load();
+
   final payload = await request.readAsString();
   final data = json.decode(payload);
 
   final receivedIdToken = data["idToken"];
   final receivedUserId = data["senderUserId"];
 
-  final String webApiKey = "AIzaSyBUZKGq6lfijJTGnz7Ok8CM-v5Pr0WTCyk";
+  final String? webApiKey = env["WEB_API_KEY"];
+
+  if (webApiKey == null) {}
 
   final response = await http.post(
     Uri.parse(
