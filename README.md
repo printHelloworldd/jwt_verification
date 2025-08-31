@@ -93,7 +93,3 @@ If you want to make changes:
 We recommend discussing the idea via Issues beforehand.
 
 ---
-
-## Author(s)
-Danylo Silin
-[Email](mailto:danilsilin76@gmail.com)
